@@ -30,3 +30,5 @@ class Solution {
         return out.toString();
     }
 }
+
+// https://leetcode.com/problems/simplify-path/?envType=study-plan-v2&envId=top-interview-150
