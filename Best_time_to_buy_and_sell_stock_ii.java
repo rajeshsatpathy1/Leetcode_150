@@ -1,19 +1,26 @@
-import java.lang.Math;
+import java.util.*;
 
 class Solution {
     public int maxProfit(int[] prices) {
         var n = prices.length;
-        var maxProfit = 0;
-        var currProfit = 0;
-        var minPrice = Integer.MAX_VALUE;
+
+        if (n <= 1) return 0;
+
+        var buy = prices[0];
+        var sell = prices[1];
+        var profit = 0;
 
         for (int i = 0;i < n;i++) {
-            minPrice = Math.min(prices[i], minPrice);
-            currProfit = prices[i] - minPrice;
-            maxProfit = Math.max(currProfit, maxProfit);
+            sell = prices[i];
+            if (sell > buy) {
+                profit += sell-buy;
+                buy = sell;
+            } else {
+                buy = Math.min(buy, prices[i]);
+            }
         }
-        return maxProfit;
+        return profit;
     }
 }
 
-// https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/?envType=study-plan-v2&envId=top-interview-150
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/submissions/?envType=study-plan-v2&envId=top-interview-150
